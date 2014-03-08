@@ -1,0 +1,43 @@
+{
+  "name": "kodrIO",
+  "preferGlobal": true,
+  "version": "0.0.1",
+  "description": "An event driven plugin based NodeJS application framework",
+  "contributors": [
+    {
+      "name": "Kody Peterson",
+      "email": "headwebmonkey@gmail.com"
+    },
+    {
+      "name": "Justin J. Novack",
+      "email": "jnovack@gmail.com"
+    }
+  ],
+  "scripts": {
+    "test": "mocha ./tests/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kodr-io/kodrIO.git"
+  },
+  "dependencies": {
+    "express": "3.4.8",
+    "npm": "1.4.4",
+    "jade": "1.1.5",
+    "q": "1.0.0",
+    "socket.io": "0.9.16",
+    "debug": "0.7.4",
+    "passport": "0.1.18",
+    "ansi-to-html": "0.1.1",
+    "moment": "2.5.1"
+  },
+  "devDependencies": {
+    "mocha": "~1.17.1",
+    "comparejs": "~0.0.11",
+    "should": "~3.1.2"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=10.25"
+  }
+}

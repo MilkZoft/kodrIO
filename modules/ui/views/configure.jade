@@ -1,0 +1,53 @@
+extend partials/globalLayout.jade
+
+block content
+  .row
+    .col-lg-12
+      h1.page-header Configure
+  .row
+    .col-lg-12
+      if hasErrors
+        .alert.alert-danger
+          |Some required fields are missing!
+          strong
+            |Your configuration has not been updated!
+      if hasSaved
+        .alert.alert-success
+          |Your configuration has been updated!
+      -var widthCount = 0;
+      form(method="post")
+        for configuration in configurations
+          .panel.panel-default.noPad.col-sm-12(class=configuration.pluginEnabled === true ? "" : "panel-disabled")
+            .panel-heading
+              strong #{configuration.pluginName} Configuration
+              if !configuration.pluginEnabled
+                a(href="/configure/enable/#{configuration.pluginName}").pull-right
+                  button.btn.btn-success.btn-xs
+                    i.fa.fa-fw.fa-plus
+                    | &nbsp;Enable
+              else
+                a(href="/configure/disable/#{configuration.pluginName}").pull-right
+                  button.btn.btn-danger.btn-xs
+                    i.fa.fa-fw.fa-minus
+                    | &nbsp;Disable
+            if configuration.pluginEnabled
+              .panel-body
+                -for(key in configuration.pluginConfiguration)
+                  -var item = configuration.pluginConfiguration[key]
+                  - if(item.placeholder === undefined) item.placeholder = ''
+                  - if(item.value === undefined) item.value = ''
+                  - if(item.type === undefined) item.type = 'text'
+                  .form-group(class=item.errorText !== undefined ? "has-error" : "")
+                    label #{item.name}
+                      if item.errorText !== undefined
+                        span.text-danger
+                            strong #{item.errorText}
+                    input.form-control(name="#{configuration.configurationID}_#{key}", placeholder="#{item.placeholder}", value="#{item.value}", type="#{item.type}")
+                    if item.helpText !== undefined
+                      .help-block #{item.helpText}
+
+        .row
+          .col-sm-12.text-center
+            button.btn.btn-primary
+              i.fa.fa-fw.fa-save
+              | &nbsp;Save Configuration

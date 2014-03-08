@@ -1,0 +1,52 @@
+extend partials/globalLayout.jade
+
+block content
+  .row
+    .col-lg-12
+      h1.page-header Dashboard
+  .row
+    .col-lg-12
+      -var widthCount = 0;
+      -for(var widget in widgets)
+        - var info = kodrIO.plugins[widget]
+        - var pluginName = widgets[widget].pluginName;
+        - var functionName = "_widget_index_"+widget
+        - var widgetData = kodrIO.plugins[pluginName][functionName](session);
+        if widgetData.width == undefined
+          - widgetData.width = 12
+        -widthCount += widgetData.width;
+        if widthCount > 12
+          -widthCount = widgetData.width;
+          .clearfix
+
+        .panel.panel-default.noPad(class="col-sm-#{widgetData.width}")
+          .panel-heading
+            if widgetData.icon !== undefined
+              i.fa.fa-fw(class="fa-#{widgetData.icon}")
+            strong #{widgetData.title}
+            if widgetData.actions !== undefined
+              .pull-right
+                .btn-group
+                  button.btn.btn-default.btn-xs.dropdown-toggle(type='button', data-toggle='dropdown')
+                    | Actions
+                    span.caret
+                  ul.dropdown-menu.pull-right(role='menu')
+                    -for(var action in widgetData.actions)
+                      if action === "divider"
+                        li.divider
+                      else
+                        li
+                          a(href='#{widgetData.actions[action].url}')
+                            i.fa.fa-fw(class="fa-#{widgetData.actions[action].icon}")
+                            | #{action}
+          if widgets[widget].renderedContent !== undefined
+            .panel-body!= widgets[widget].renderedContent
+          else
+            .panel-body!= widgetData.content
+        if widgetData.width !== 12
+          - widthCount++
+          .col-sm-1.noPad
+        if widthCount == 12
+          -widthCount = 0
+          .clearfix
+      .clearfix
