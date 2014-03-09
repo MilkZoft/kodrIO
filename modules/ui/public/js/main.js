@@ -13,5 +13,7 @@ $(function() {
         } else {
             $('div.sidebar-collapse').removeClass('collapse')
         }
-    })
-})
+    });
+    $("[data-toggle='tooltip']").tooltip({ container: 'body' });
+    $("[data-toggle=popover]").popover();
+});

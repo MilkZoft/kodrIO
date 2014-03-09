@@ -169,12 +169,15 @@ html
       nav.navbar-default.navbar-static-side(role='navigation')
         .sidebar-collapse
           ul#side-menu.nav
-            li.sidebar-search
-              .input-group.custom-search-form
-                input.form-control(type='text', placeholder='Search...')
-                span.input-group-btn
-                  button.btn.btn-default(type='button')
-                    i.fa.fa-search
+            li.sidebar-login
+              if session.user != undefined
+                a(href="/me")
+                  img.fa-fw.pull-left(src='#{session.user.authenticated.avatar}')
+                  span.ellipsis.has-tooltip(data-toggle="tooltip" data-placement="right" title="" data-original-title="signed-in with #{session.user.authenticated.provider}") #{session.user.authenticated.name}
+              else
+                a(href="/login")
+                  i.fa.fa-user.fa-fw
+                  span Sign-In
             li
               a(href='/')
                 i.fa.fa-dashboard.fa-fw

@@ -17,7 +17,7 @@ block content
       -var widthCount = 0;
       form(method="post")
         for configuration in configurations
-          .panel.panel-default.noPad.col-sm-12(class=configuration.pluginEnabled === true ? "" : "panel-disabled")
+          .panel.panel-default.no-padding.col-sm-12(class=configuration.pluginEnabled === true ? "" : "panel-disabled")
             .panel-heading
               strong #{configuration.pluginName} Configuration
               if !configuration.pluginEnabled

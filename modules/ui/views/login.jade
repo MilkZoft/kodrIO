@@ -19,7 +19,7 @@ block content
           -widthCount = widgetData.width;
           .clearfix
 
-        .panel.panel-default.noPad(class="col-sm-#{widgetData.width}")
+        .panel.panel-default.no-padding(class="col-sm-#{widgetData.width}")
           .panel-heading
             if widgetData.icon !== undefined
               i.fa.fa-fw(class="fa-#{widgetData.icon}")
@@ -43,7 +43,7 @@ block content
             .panel-body!= widgetData.content
         if widgetData.width !== 12
           - widthCount++
-          .col-sm-1.noPad
+          .col-sm-1.no-padding
         if widthCount == 12
           -widthCount = 0
           .clearfix
