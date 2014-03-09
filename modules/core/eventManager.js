@@ -85,6 +85,7 @@ module.exports = function(kodrIO){
         done: function(deferred, event, args, tracking){
             deferred.resolve(tracking.return);
             args[0] += "_finished";
+            args.push(tracking.return);
             eventManager.triggerEvent.apply(null, args);
         }
     }
