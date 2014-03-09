@@ -1,7 +1,8 @@
 {
-  "name": "kodrIO",
+  "name": "kodr-io",
   "preferGlobal": true,
-  "version": "0.0.1",
+  "version": "0.0.3",
+  "main": "kodrIO.js",
   "description": "An event driven plugin based NodeJS application framework",
   "contributors": [
     {

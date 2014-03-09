@@ -9,7 +9,8 @@ module.exports = function(kodrIO){
         ansiToHtml= require('ansi-to-html'),
         debug = require('debug')('ui'),
         passport = require('passport'),
-        convert = new ansiToHtml({newline: true});
+        convert = new ansiToHtml({newline: true}),
+        jade = require("jade");
 
     ui.populatePageData = function(){
         ui.pageData = [];

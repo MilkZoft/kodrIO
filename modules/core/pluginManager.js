@@ -18,6 +18,10 @@ module.exports = function(kodrIO){
 
     pluginManager.loadPlugins = function(){
         kodrIO.utils.consoleOutput("Looking for plugins in '"+this.pluginDir+"'...");
+        if(!fs.existsSync(this.pluginDir)){
+            kodrIO.utils.consoleOutput("ERROR: No plugin dir found '"+this.pluginDir+"'");
+            return false;
+        }
         this.pluginLocations = fs.readdirSync(this.pluginDir);
         kodrIO.utils.consoleOutput("Found "+this.pluginLocations.length+" Plugin(s)!");
     }

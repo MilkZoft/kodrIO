@@ -6,7 +6,9 @@ module.exports = function(kodrIO){
         kodrIO.utils.consoleOutput("line");
         kodrIO.utils.consoleOutput(kodrIO.package.name, "Center", true);
         kodrIO.utils.consoleOutput("v"+kodrIO.package.version, "Center", true);
-        kodrIO.utils.consoleOutput(kodrIO.package.description, "Center", true);
+        if(kodrIO.package.description !== undefined){
+            kodrIO.utils.consoleOutput(kodrIO.package.description, "Center", true);
+        }
         kodrIO.utils.consoleOutput("line");
         // Start the initialization process
         kodrIO.utils.consoleOutput("Initializing...");
