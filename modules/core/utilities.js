@@ -3,7 +3,6 @@ module.exports = function(kodrIO){
         path = require('path'),
         fs = require("fs");
 
-    utils.home = path.resolve(__dirname) + "/../../";
     utils.console = {};
 
     utils.handlePromiseError = function(error){
@@ -66,7 +65,7 @@ module.exports = function(kodrIO){
     }
 
     utils.mkdir = function(dir) {
-        if (path.relative(utils.home, dir).substring(0,2) == ".." ) {
+        if (path.relative(kodrIO.root, dir).substring(0,2) == ".." ) {
             throw new RangeError("Directory out of scope. '" + dir + "'");
             return false;
         }
@@ -77,7 +76,7 @@ module.exports = function(kodrIO){
     }
 
     utils.deleteFolderRecursive = function(dir) {
-        if (path.relative(utils.home, dir).substring(0,2) == ".." ) {
+        if (path.relative(kodrIO.root, dir).substring(0,2) == ".." ) {
             throw new RangeError("Directory out of scope. '" + dir + "'");
             return false;
         }

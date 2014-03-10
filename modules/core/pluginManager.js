@@ -1,6 +1,6 @@
 module.exports = function(kodrIO){
     var pluginManager = {
-            pluginDir: process.cwd()+"/plugins/",
+            pluginDir: kodrIO.root+"/plugins/",
             pluginLocations: []
         },
         fs = require("fs"),
