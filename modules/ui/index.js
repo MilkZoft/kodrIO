@@ -41,7 +41,7 @@ module.exports = function(kodrIO){
             ui.populatePageData();
             res.locals.navigation = [];
             for(i in ui.pageData){
-                if(ui.pageData[i].showInNav(req.session)){
+                if(ui.pageData[i].showInNav !== undefined && ui.pageData[i].showInNav(req.session)){
                     res.locals.navigation.push({
                         title: ui.pageData[i].title,
                         url: ui.pageData[i].url,
