@@ -61,7 +61,7 @@ module.exports = function(app, kodrIO, ui){
                 pluginConfiguration: ui.configurations[i].pluginPublicReference["_configuration"]()
             });
         }
-        res.render("configure");
+        res.render("configure", { session: req.session } );
     });
 
     app.post("/configure", function(req, res){
@@ -115,7 +115,7 @@ module.exports = function(app, kodrIO, ui){
         }
         if(!valid){
             res.locals.hasErrors = true;
-            res.render("configure");
+            res.render("configure", { session: req.session } );
         }else{
             // All configs are valid - Update them!
             for(i in toValidate){
@@ -126,7 +126,7 @@ module.exports = function(app, kodrIO, ui){
     });
 
     app.get("/websockets", function(req, res){
-        res.render('websockets');
+        res.render('websockets', { session: req.session } );
     });
 
     app.get("/configure/:state/:plugin", function(req, res){
